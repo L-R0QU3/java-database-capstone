@@ -53,26 +53,12 @@ v v
 | Appointments | | Medical Notes |
 +---------------------+ +---------------------+
 
-
 ## Section 2: Numbered flow of data and control
 
-1. The user (Admin, Doctor, or Patient) opens the browser and navigates to the SmartCare portal.
-2. The frontend (Thymeleaf template) renders the login page. The user submits credentials.
-3. The request is sent to the Spring MVC `AuthController` via HTTP POST.
-4. The `AuthService` validates the credentials against the MySQL `users` table (via `UserRepository`).
-5. If valid, a **JWT token** is generated and returned to the client.
-6. The client stores the token and includes it in the `Authorization` header for subsequent requests.
-7. Based on the user's role (`ADMIN`, `DOCTOR`, `PATIENT`), the frontend renders the corresponding dashboard.
-8. When a **Patient** books an appointment:
-   - The frontend sends a POST request to `/api/appointments`.
-   - The `AppointmentController` validates the request and calls `AppointmentService`.
-   - The service checks doctor availability, saves the appointment in MySQL, and returns the confirmation.
-9. When a **Doctor** creates a prescription:
-   - The frontend sends a POST request to `/api/prescriptions`.
-   - The `PrescriptionController` calls `PrescriptionService`.
-   - The prescription is saved in **MongoDB** (flexible schema).
-10. When an **Admin** generates a report:
-    - The frontend calls a stored procedure in MySQL via `ReportRepository`.
-    - The result is returned as JSON and displayed in the dashboard.
-11. All requests are logged, and sensitive operations require role-based authorization.
-12. GitHub Actions run on every push: linting, unit tests, and Docker build verification.
+1. **Authentication:** The user (Admin, Doctor, or Patient) submits credentials via the login page. The request is sent to the Spring MVC `AuthController`, which delegates to `AuthService` to validate the credentials against the MySQL `users` table.
+2. **Token Generation:** Upon successful validation, a **JWT token** is generated and returned to the client, which stores it for subsequent requests.
+3. **Role-Based Access:** The client includes the JWT in the `Authorization` header. The backend validates the token and determines the user's role (`ADMIN`, `DOCTOR`, `PATIENT`).
+4. **Dashboard Rendering:** Based on the role, the Thymeleaf frontend renders the appropriate dashboard (Admin panel, Doctor schedule, or Patient portal).
+5. **Appointment Booking (MySQL):** A Patient books an appointment. The request goes to `AppointmentController`, is validated by `AppointmentService`, and the appointment is saved in **MySQL**.
+6. **Prescription Creation (MongoDB):** A Doctor creates a prescription. The request is handled by `PrescriptionController` and saved in **MongoDB** for flexible schema storage.
+7. **Reporting and CI/CD:** Admins generate reports using **MySQL stored procedures**. Meanwhile, on every push, **GitHub Actions** run linting, unit tests, and Docker build verification.
