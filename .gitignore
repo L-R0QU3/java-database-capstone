@@ -13,4 +13,4 @@ build/
 Thumbs.db
 
 # Logs
-*.log
+*.logcreate_issues.ps1
