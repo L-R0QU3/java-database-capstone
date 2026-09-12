@@ -49,7 +49,8 @@ public class SecurityConfig {
                     "/api/doctor/all",
                     "/api/doctor/filter",
                     "/api/patient/signup",
-                    "/api/patient/login"
+                    "/api/patient/login",
+                    "/api/appointment/**"
                 ).permitAll()
 
                 // Everything else requires authentication
