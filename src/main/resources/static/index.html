@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCare - Select Your Role</title>
+    <link rel="stylesheet" href="/assets/css/index.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script type="module" src="/js/render.js"></script>
+    <script type="module" src="/js/util.js"></script>
+    <script type="module" src="/js/components/header.js"></script>
+    <script type="module" src="/js/components/footer.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <div id="header"></div>
+
+            <main class="main-content">
+                <h2>Select Your Role</h2>
+
+                <div class="role-buttons">
+                    <button class="dashboard-btn" id="adminLogin" onclick="selectRole('admin')">Admin</button>
+                    <button class="dashboard-btn" id="doctorLogin" onclick="selectRole('doctor')">Doctor</button>
+                    <button class="dashboard-btn" id="patientLogin" onclick="selectRole('patient')">Patient</button>
+                </div>
+            </main>
+
+            <div id="footer"></div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        function selectRole(role) {
+            localStorage.setItem("userRole", role);
+            if (role === "patient") {
+                window.location.href = "/pages/patientDashboard.html";
+            } else if (role === "admin") {
+                if (typeof window.openModal === "function") window.openModal("adminLogin");
+            } else if (role === "doctor") {
+                if (typeof window.openModal === "function") window.openModal("doctorLogin");
+            }
+        }
+        window.selectRole = selectRole;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const closeBtn = document.getElementById("closeModal");
+            if (closeBtn) {
+                closeBtn.addEventListener("click", () => {
+                    if (typeof window.closeModal === "function") window.closeModal();
+                });
+            }
+        });
+    </script>
+    <script type="module" src="/js/services/index.js"></script>
+</body>
+</html>

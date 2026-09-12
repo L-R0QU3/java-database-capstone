@@ -1,0 +1,36 @@
+.searchBar {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.filter-wrapper {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.filter-select {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    flex: 1;
+    min-width: 180px;
+}
+
+.card-actions {
+    background: #003d33;
+    text-align: center;
+    padding: 12px;
+    color: #fff;
+    border-radius: 0 0 12px 12px;
+    transition: background 0.3s;
+}
+
+.card-actions:hover {
+    background: #00251f;
+}

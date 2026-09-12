@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor Dashboard - SmartCare</title>
+    <link rel="stylesheet" th:href="@{/assets/css/adminDashboard.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/doctorDashboard.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+    <script type="module" th:src="@{/js/render.js}"></script>
+    <script type="module" th:src="@{/js/util.js}"></script>
+    <script type="module" th:src="@{/js/components/header.js}"></script>
+    <script type="module" th:src="@{/js/components/footer.js}"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <div id="header"></div>
+
+            <main class="main-content">
+                <h1>Doctor Dashboard</h1>
+
+                <div class="filter-section">
+                    <input type="text" id="searchBar" placeholder="Search by patient name">
+                    <button id="todayButton" class="btn-secondary">Today's Appointments</button>
+                    <input type="date" id="datePicker">
+                </div>
+
+                <table id="patientTable">
+                    <thead>
+                        <tr>
+                            <th>Patient ID</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="patientTableBody"></tbody>
+                </table>
+            </main>
+
+            <div id="footer"></div>
+        </div>
+    </div>
+
+    <script type="module" th:src="@{/js/doctorDashboard.js}"></script>
+</body>
+</html>

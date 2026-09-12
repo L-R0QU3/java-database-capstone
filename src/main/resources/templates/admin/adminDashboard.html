@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - SmartCare</title>
+    <link rel="stylesheet" th:href="@{/assets/css/adminDashboard.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+    <script type="module" th:src="@{/js/render.js}"></script>
+    <script type="module" th:src="@{/js/util.js}"></script>
+    <script type="module" th:src="@{/js/components/header.js}"></script>
+    <script type="module" th:src="@{/js/components/footer.js}"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <div id="header"></div>
+
+            <main class="main-content">
+                <h1>Admin Dashboard</h1>
+
+                <div class="filter-section">
+                    <input type="text" id="searchBar" placeholder="Search by doctor name">
+                    <select id="filterTime">
+                        <option value="">Filter by Time</option>
+                        <option value="09:00-10:00">09:00-10:00</option>
+                        <option value="10:00-11:00">10:00-11:00</option>
+                        <option value="11:00-12:00">11:00-12:00</option>
+                        <option value="14:00-15:00">14:00-15:00</option>
+                        <option value="15:00-16:00">15:00-16:00</option>
+                        <option value="16:00-17:00">16:00-17:00</option>
+                    </select>
+                    <select id="filterSpecialty">
+                        <option value="">Filter by Specialty</option>
+                        <option value="Cardiologist">Cardiologist</option>
+                        <option value="Neurologist">Neurologist</option>
+                        <option value="Orthopedist">Orthopedist</option>
+                        <option value="Pediatrician">Pediatrician</option>
+                        <option value="Dermatologist">Dermatologist</option>
+                    </select>
+                </div>
+
+                <div id="content" class="doctor-list"></div>
+            </main>
+
+            <div id="footer"></div>
+        </div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script type="module" th:src="@{/js/services/index.js}"></script>
+    <script type="module" th:src="@{/js/adminDashboard.js}"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const closeBtn = document.getElementById("closeModal");
+            if (closeBtn) {
+                closeBtn.addEventListener("click", () => {
+                    if (typeof window.closeModal === "function") window.closeModal();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

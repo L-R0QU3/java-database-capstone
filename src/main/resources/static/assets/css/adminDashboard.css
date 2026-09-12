@@ -1,0 +1,41 @@
+.main-content {
+    padding: 30px;
+    background: #f9fafb;
+    min-height: calc(100vh - 140px);
+}
+
+.main-content h1 {
+    color: #004d40;
+    margin-bottom: 25px;
+}
+
+.filter-section {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.filter-section input,
+.filter-section select {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    flex: 1;
+    min-width: 200px;
+}
+
+.doctor-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.no-results {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+    padding: 40px;
+    grid-column: 1 / -1;
+}
